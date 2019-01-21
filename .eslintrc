@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "standard"
+  ],
+  "rules": {
+    "eqeqeq": [
+      "error",
+      "always",
+      {
+        "null": "ignore"
+      }
+    ],
+    "no-unused-vars": "warn"
+  }
+}
