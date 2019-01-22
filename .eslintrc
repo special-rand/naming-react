@@ -8,6 +8,7 @@
   ],
   "extends": [
     "standard",
+    "eslint:recommended",
     "plugin:react/recommended"
   ],
   "rules": {
@@ -18,6 +19,8 @@
         "null": "ignore"
       }
     ],
-    "no-unused-vars": "warn"
+    "no-console": "off",
+    "no-unused-vars": "warn",
+    "react/prop-types": "off"
   }
 }
