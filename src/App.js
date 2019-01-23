@@ -63,10 +63,12 @@ class App extends Component {
                 }
               </Select>
             </Grid>
-            <RandomCard
-              name={this.state.selectedItem.name}
-              list={this.state.selectedItem.list}
-            />
+            <Grid>
+              <RandomCard
+                name={this.state.selectedItem.name}
+                list={this.state.selectedItem.list}
+              />
+            </Grid>
           </Grid>
         </main>
       </div>
