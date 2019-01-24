@@ -17,7 +17,7 @@ class Card extends Component {
     }
   }
 
-  render (): React.ReactNode {
+  render () {
     return (
       <div className={[["card-item-" + this.state.id], "card-item"].join(' ')}>
         {this.state.name}
