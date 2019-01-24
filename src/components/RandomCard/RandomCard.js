@@ -4,7 +4,7 @@ import './RandomCard.styl'
 
 function card (props) {
   return (
-    <div className={[["card-item-"+props.id], "card-item"].join(' ')}>
+    <div className={[["card-item-" + props.id], "card-item"].join(' ')}>
       {props.name}
     </div>
   )
@@ -42,7 +42,7 @@ class RandomCard extends Component {
             {this.state.cardList}
           </div>
           <Button onClick={this.startRoll}>
-          点击开始点名
+            点击开始点名
           </Button>
         </div>
       </div>
