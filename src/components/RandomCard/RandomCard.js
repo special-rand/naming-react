@@ -4,48 +4,46 @@ import Button from '@material-ui/core/Button'
 import './RandomCard.styl'
 
 class Card extends Component {
-  propTypes = {
+  static propTypes = {
     id: PropTypes.number,
     name: PropTypes.string
   }
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      id: props.id,
-      name: props.name
-    }
-  }
-
   render () {
     return (
-      <div className={[["card-item-" + this.state.id], "card-item"].join(' ')}>
-        {this.state.name}
+      <div className={[["card-item-" + this.props.id], "card-item"].join(' ')}>
+        {this.props.name}
       </div>
     )
   }
 }
 
 class RandomCard extends Component {
-  propTypes = {
+  static propTypes = {
     name: PropTypes.string.isRequired,
     list: PropTypes.array.isRequired
   }
 
+  latestID = 0
+
   constructor (props) {
     super(props)
     this.state = {
-      cardList: [Card({
-        id: 0,
-        name: props.list[0]
-      })], // init firstCard
-      name: null,
-      list: null
+      cardList: []
     }
   }
 
   startRoll = () => {
     // todo
+    // this.setState({
+    //   cardList: [
+    //     ...this.state.cardList,
+    //     {
+    //       name: this.props.list[this.latestID],
+    //       id: this.latestID++
+    //     }
+    //   ]
+    // })
   }
 
   loopRoll = () => {
@@ -60,7 +58,9 @@ class RandomCard extends Component {
             'height': '10rem',
             'width': '100%'
           }}>
-            {this.state.cardList}
+            {this.state.cardList.map(o =>
+              <Card key={o.id} id={o.id} name={o.name}/>
+            )}
           </div>
           <Button onClick={this.startRoll}>
             点击开始点名
