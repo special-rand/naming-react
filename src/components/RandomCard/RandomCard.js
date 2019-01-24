@@ -1,20 +1,41 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import './RandomCard.styl'
 
-function card (props) {
-  return (
-    <div className={[["card-item-" + props.id], "card-item"].join(' ')}>
-      {props.name}
-    </div>
-  )
-}
+class Card extends Component {
+  propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string
+  }
 
-class RandomCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      cardList: [card({
+      id: props.id,
+      name: props.name
+    }
+  }
+
+  render (): React.ReactNode {
+    return (
+      <div className={[["card-item-" + this.state.id], "card-item"].join(' ')}>
+        {this.state.name}
+      </div>
+    )
+  }
+}
+
+class RandomCard extends Component {
+  propTypes = {
+    name: PropTypes.string.isRequired,
+    list: PropTypes.array.isRequired
+  }
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      cardList: [Card({
         id: 0,
         name: props.list[0]
       })], // init firstCard
@@ -23,11 +44,11 @@ class RandomCard extends Component {
     }
   }
 
-  startRoll () {
+  startRoll = () => {
     // todo
   }
 
-  loopRoll () {
+  loopRoll = () => {
     // todo
   }
 
