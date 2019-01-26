@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as PropTypes from 'prop-types'
+import random from 'lodash/random'
 import Button from '@material-ui/core/Button'
 import './RandomCard.styl'
 
@@ -9,7 +10,7 @@ class Card extends Component {
     name: PropTypes.string
   }
 
-  componentDidMount () {
+  componentDidMount = () => {
     // todo: auto swing
   }
 
@@ -28,26 +29,38 @@ class RandomCard extends Component {
     list: PropTypes.array.isRequired
   }
 
-  latestID = 0  // todo
+  state = {
+    cardList: [
+      {
+        name: this.props.list[0],
+        id: 0
+      }
+    ]
+  }
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      cardList: []
+  getRandomName = () => {
+    const list = this.props.list
+    const idx = random(list.length - 1)
+    return list[idx]
+  }
+
+  genCardItem = (
+    name = this.getRandomName(),
+    id = this.state.cardList.length
+  ) => {
+    return {
+      name: name,
+      id: id
     }
   }
 
+
   startRoll = () => {
-    // todo: createFirstCard
-    // this.setState({
-    //   cardList: [
-    //     ...this.state.cardList,
-    //     {
-    //       name: this.props.list[this.latestID],
-    //       id: this.latestID++
-    //     }
-    //   ]
-    // })
+    this.setState({
+      cardList: [
+        this.genCardItem()
+      ]
+    })
   }
 
   loopRoll = () => {
