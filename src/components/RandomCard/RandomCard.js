@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as PropTypes from 'prop-types'
 import random from 'lodash/random'
 import Button from '@material-ui/core/Button'
+import { convertToUnit } from '@/utils/helpers'
 import './RandomCard.styl'
 
 class Card extends Component {
@@ -12,6 +13,10 @@ class Card extends Component {
 
   componentDidMount = () => {
     // todo: auto swing
+    const _id = window.setInterval(() => {
+
+      window.clearInterval(_id)
+    })
   }
 
   render () {
@@ -36,6 +41,11 @@ class RandomCard extends Component {
         id: 0
       }
     ]
+  }
+
+  styles = {
+    height: convertToUnit(200),
+    width: convertToUnit(100, '%')
   }
 
   getRandomName = () => {
@@ -71,10 +81,7 @@ class RandomCard extends Component {
     return (
       <div className="b-random-card">
         <div>
-          <div style={{
-            'height': '10rem',
-            'width': '100%'
-          }}>
+          <div style={this.styles}>
             {this.state.cardList.map(o =>
               <Card key={o.id} id={o.id} name={o.name}/>
             )}

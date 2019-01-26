@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import memoize from 'memoize-one'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/es/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -14,15 +15,17 @@ import RandomCard from './components/RandomCard'
 import { groups } from './people.json'
 
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      groups: groups, // inject
-      selectedItem: groups[0]
-    }
+  groups = groups
+
+  state = {
+    selected: 0
   }
 
+  selectedItem = memoize(idx => this.groups[idx])
+
   render () {
+    const item = this.selectedItem(this.state.selected)
+
     return (
       <div className="app">
         <AppBar position="static">
@@ -33,40 +36,29 @@ class App extends Component {
           </Toolbar>
         </AppBar>
         <main className="container">
-          <Grid
-            container
-            spacing={24}
-          >
-            <Grid item xs={12}>
-              <Select
-                value={this.state.selectedItem.list}
-                onChange={(e, c) => {
-                  this.setState({
-                    selectedItem: groups[c.key]
-                  })
-                }}
-                autoWidth={true}
-                inputProps={{
-                  name: '1'
-                }}
-              >
-                {
-                  groups.map((o, i) => {
-                    return (
-                      <MenuItem
-                        value={o.list}
-                        key={i}>
-                        {o.name}
-                      </MenuItem>
-                    )
-                  })
-                }
-              </Select>
-            </Grid>
+          <Grid container spacing={24}>
             <Grid item>
+              <Select
+                autoWidth={true}
+                value={this.state.selected}
+                onChange={(e) => {
+                  this.setState({
+                    selected: e.target.value
+                  })
+                }}
+              >{groups.map((o, idx) => {
+                return (
+                  <MenuItem value={idx} key={idx}>{o.name}</MenuItem>)
+              })}</Select>
+            </Grid>
+            <Grid
+              style={{
+                width: '100%'
+              }}
+              item>
               <RandomCard
-                name={this.state.selectedItem.name}
-                list={this.state.selectedItem.list}
+                name={item.name}
+                list={item.list}
               />
             </Grid>
           </Grid>
