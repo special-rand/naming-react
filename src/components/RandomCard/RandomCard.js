@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as PropTypes  from 'prop-types'
+import * as PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import './RandomCard.styl'
 
@@ -7,6 +7,10 @@ class Card extends Component {
   static propTypes = {
     id: PropTypes.number,
     name: PropTypes.string
+  }
+
+  componentDidMount () {
+    // todo: auto swing
   }
 
   render () {
@@ -24,7 +28,7 @@ class RandomCard extends Component {
     list: PropTypes.array.isRequired
   }
 
-  latestID = 0
+  latestID = 0  // todo
 
   constructor (props) {
     super(props)
@@ -34,7 +38,7 @@ class RandomCard extends Component {
   }
 
   startRoll = () => {
-    // todo
+    // todo: createFirstCard
     // this.setState({
     //   cardList: [
     //     ...this.state.cardList,
@@ -47,7 +51,7 @@ class RandomCard extends Component {
   }
 
   loopRoll = () => {
-    // todo
+    // todo: loopCardWithLatestID
   }
 
   render () {
