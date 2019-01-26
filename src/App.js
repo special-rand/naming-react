@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import memoize from 'memoize-one'
 import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/es/Toolbar'
+import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/es/MenuItem/MenuItem'
+import MenuItem from '@material-ui/core/MenuItem/MenuItem'
 import Grid from '@material-ui/core/Grid'
 import './App.styl'
 

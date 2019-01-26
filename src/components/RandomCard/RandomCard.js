@@ -11,10 +11,13 @@ class Card extends Component {
     name: PropTypes.string
   }
 
+  style = {
+    top: convertToUnit(0)
+  }
+
   componentDidMount = () => {
     // todo: auto swing
     const _id = window.setInterval(() => {
-
       window.clearInterval(_id)
     })
   }
