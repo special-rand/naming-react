@@ -1,35 +1,10 @@
 import React, { Component } from 'react'
 import * as PropTypes from 'prop-types'
 import random from 'lodash/random'
+import { shuffle } from 'd3-array'
 import Button from '@material-ui/core/Button'
 import { convertToUnit } from '@/utils/helpers'
 import './RandomCard.styl'
-
-class Card extends Component {
-  static propTypes = {
-    id: PropTypes.number,
-    name: PropTypes.string
-  }
-
-  style = {
-    top: convertToUnit(0)
-  }
-
-  componentDidMount = () => {
-    // todo: auto swing
-    const _id = window.setInterval(() => {
-      window.clearInterval(_id)
-    })
-  }
-
-  render () {
-    return (
-      <div className={[["card-item-" + this.props.id], "card-item"].join(' ')}>
-        {this.props.name}
-      </div>
-    )
-  }
-}
 
 class RandomCard extends Component {
   static propTypes = {
@@ -37,29 +12,30 @@ class RandomCard extends Component {
     list: PropTypes.array.isRequired
   }
 
+  height = 200
+
+  cardList = () => {
+    return shuffle(this.props.list.map((o, idx) => ({ id: idx + 1, name: o })))
+  }
+
   state = {
-    cardList: [
-      {
-        name: this.props.list[0],
-        id: 0
-      }
-    ]
+    start: false
   }
 
   styles = {
-    height: convertToUnit(200),
+    height: convertToUnit(this.height),
     width: convertToUnit(100, '%')
   }
 
+
   getRandomName = () => {
-    const list = this.props.list
-    const idx = random(list.length - 1)
-    return list[idx]
+    const idx = random(this.props.list.length - 1)
+    return this.props.list[idx]
   }
 
   genCardItem = (
     name = this.getRandomName(),
-    id = this.state.cardList.length
+    id = this.props.list.length
   ) => {
     return {
       name: name,
@@ -67,33 +43,63 @@ class RandomCard extends Component {
     }
   }
 
-
   startRoll = () => {
     this.setState({
-      cardList: [
-        this.genCardItem()
-      ]
+      start: true
     })
   }
 
-  loopRoll = () => {
-    // todo: loopCardWithLatestID
+  restartRoll = () => {
+    this.setState({
+      start: false
+    })
+  }
+
+  constructor (props) {
+    super(props)
   }
 
   render () {
+    const item = this.genCardItem()
+    const card = (
+      <div
+        className="card"
+        style={{
+          'height': this.height
+        }}
+      >
+        <span>
+          {item.name}
+        </span>
+      </div>
+    )
     return (
-      <div className="b-random-card">
-        <div>
+      <card className="b-random-card">
+        <div
+          style={{
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+        >
           <div style={this.styles}>
-            {this.state.cardList.map(o =>
-              <Card key={o.id} id={o.id} name={o.name}/>
-            )}
+            {
+              this.state.start ? card :
+                <div
+                  className="card"
+                  style={{ height: this.height }}
+                >
+                  <span>点击下方按钮开始</span>
+                </div>
+            }
           </div>
           <Button onClick={this.startRoll}>
             点击开始点名
           </Button>
+          <Button onClick={this.restartRoll}>
+            重新开始
+          </Button>
         </div>
-      </div>
+      </card>
     )
   }
 }

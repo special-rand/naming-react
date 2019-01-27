@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import memoize from 'memoize-one'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem/MenuItem'
+import { AppBar, Checkbox, FormControlLabel, Toolbar, Typography, Select, MenuItem } from '@material-ui/core'
+
 import Grid from '@material-ui/core/Grid'
 import './App.styl'
 
@@ -21,7 +18,12 @@ class App extends Component {
     selected: 0
   }
 
+  // computed value
   selectedItem = memoize(idx => this.groups[idx])
+
+  constructor (props) {
+    super(props)
+  }
 
   render () {
     const item = this.selectedItem(this.state.selected)
@@ -37,7 +39,7 @@ class App extends Component {
         </AppBar>
         <main className="container">
           <Grid container spacing={24}>
-            <Grid item>
+            <Grid>
               <Select
                 autoWidth={true}
                 value={this.state.selected}
@@ -50,12 +52,18 @@ class App extends Component {
                 return (
                   <MenuItem value={idx} key={idx}>{o.name}</MenuItem>)
               })}</Select>
+              <FormControlLabel
+                control={
+                  <Checkbox/>
+                }
+                label="是否跳过动画"
+              />
             </Grid>
             <Grid
               style={{
                 width: '100%'
               }}
-              item>
+            >
               <RandomCard
                 name={item.name}
                 list={item.list}

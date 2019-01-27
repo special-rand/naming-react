@@ -1186,6 +1186,11 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
+"@types/d3-timer@^1.0.8":
+  version "1.0.8"
+  resolved "http://registry.npm.taobao.org/@types/d3-timer/download/@types/d3-timer-1.0.8.tgz#a3441d9605367059e14ad8c3494132143cbc8d58"
+  integrity sha1-o0QdlgU2cFnhStjDSUEyFDy8jVg=
+
 "@types/invariant@^2.2.29":
   version "2.2.29"
   resolved "http://registry.npm.taobao.org/@types/invariant/download/@types/invariant-2.2.29.tgz#aa845204cd0a289f65d47e0de63a6a815e30cc66"
@@ -3223,6 +3228,21 @@ cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
+
+d3-array@^2.0.3:
+  version "2.0.3"
+  resolved "http://registry.npm.taobao.org/d3-array/download/d3-array-2.0.3.tgz#9c0531eda701e416f28a030e3d4e6179ba74f19f"
+  integrity sha1-nAUx7acB5BbyigMOPU5hebp08Z8=
+
+d3-ease@^1.0.5:
+  version "1.0.5"
+  resolved "http://registry.npm.taobao.org/d3-ease/download/d3-ease-1.0.5.tgz#8ce59276d81241b1b72042d6af2d40e76d936ffb"
+  integrity sha1-jOWSdtgSQbG3IELWry1A522Tb/s=
+
+d3-timer@^1.0.9:
+  version "1.0.9"
+  resolved "http://registry.npm.taobao.org/d3-timer/download/d3-timer-1.0.9.tgz#f7bb8c0d597d792ff7131e1c24a36dd471a471ba"
+  integrity sha1-97uMDVl9eS/3Ex4cJKNt1HGkcbo=
 
 damerau-levenshtein@^1.0.4:
   version "1.0.4"
@@ -6374,6 +6394,14 @@ jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
+kapellmeister@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/kapellmeister/download/kapellmeister-2.0.0.tgz#926b88462788cef76da8c270f36249350e244613"
+  integrity sha1-kmuIRieIzvdtqMJw82JJNQ4kRhM=
+  dependencies:
+    "@types/d3-timer" "^1.0.8"
+    d3-timer "^1.0.9"
+
 keycode@^2.1.9:
   version "2.2.0"
   resolved "http://registry.npm.taobao.org/keycode/download/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
@@ -8694,6 +8722,15 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
+
+react-move@^4.0.1:
+  version "4.0.1"
+  resolved "http://registry.npm.taobao.org/react-move/download/react-move-4.0.1.tgz#0203b7c0467371945eada6146f0f2ccdde826d7a"
+  integrity sha1-AgO3wEZzcZReraYUbw8szd6CbXo=
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    kapellmeister "^2.0.0"
+    prop-types "^15.6.2"
 
 react-pose@^4.0.6:
   version "4.0.6"
