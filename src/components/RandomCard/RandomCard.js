@@ -6,6 +6,33 @@ import Button from '@material-ui/core/Button'
 import { convertToUnit } from '@/utils/helpers'
 import './RandomCard.styl'
 
+function Card (props) {
+  const styles = {
+    position: 'absolute',
+    height: props.height,
+    top: 0,
+  }
+  // mark: top from 0 to props.height
+  // const id = setInterval(() => {
+  //
+  // })
+  return (
+    <div
+      className="card"
+      style={styles}
+    >
+      <span>
+          {props.name}
+      </span>
+    </div>
+  )
+}
+
+Card.propTypes = {
+  height: PropTypes.number,
+  name: PropTypes.string
+}
+
 class RandomCard extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
@@ -23,8 +50,10 @@ class RandomCard extends Component {
   }
 
   styles = {
+    position: 'relative',
     height: convertToUnit(this.height),
-    width: convertToUnit(100, '%')
+    width: convertToUnit(100, '%'),
+    overflow: 'hidden'
   }
 
 
@@ -61,35 +90,23 @@ class RandomCard extends Component {
 
   render () {
     const item = this.genCardItem()
-    const card = (
-      <div
-        className="card"
-        style={{
-          'height': this.height
-        }}
-      >
-        <span>
-          {item.name}
-        </span>
-      </div>
-    )
+
     return (
       <card className="b-random-card">
-        <div
-          style={{
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
+        <div>
           <div style={this.styles}>
             {
-              this.state.start ? card :
-                <div
+              this.state.start ?
+                (<Card
+                  height={this.height}
+                  name={item.name}
+                />) :
+                (<div
                   className="card"
                   style={{ height: this.height }}
                 >
-                  <span>点击下方按钮开始</span>
-                </div>
+                  <span>选择下方按钮开始</span>
+                </div>)
             }
           </div>
           <Button onClick={this.startRoll}>
