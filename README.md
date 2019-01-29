@@ -2,6 +2,8 @@
 
 > 上课随机点名学生回答问题
 
+[![Build Status](https://www.travis-ci.com/Himself65/naming-react.svg?branch=master)](https://www.travis-ci.com/Himself65/naming-react)
+
 此项目是 [naming](https://github.com/Himself65/naming) 的[react](https://reactjs.org/)重构版本，
 并且旧项目不再继续维护体验和功能
 
