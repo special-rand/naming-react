@@ -13,7 +13,7 @@
 2. 通过自行打包
 
 ```bash
-git clone https://github.com/Himself65/naming.git
+git clone https://github.com/Himself65/naming-react.git
 ```
 
 （**注意**）必须修改[此文件](src/people.json)
